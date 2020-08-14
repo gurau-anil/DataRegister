@@ -172,6 +172,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\PlayerManager\Index.cshtml" />
     <Content Include="Views\PlayerManager\Create.cshtml" />
+    <Content Include="Views\PlayerManager\Edit.cshtml" />
+    <Content Include="Views\PlayerManager\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
