@@ -1,4 +1,5 @@
-﻿using DataRegister.Base.Models;
+﻿using DataRegister.Base;
+using DataRegister.Base.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataRegister.SQL
 {
-    public class SqlRepository
+    public class SqlRepository : IRepository
     {
         DataContext context;
         DbSet<Player> player;
