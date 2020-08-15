@@ -4,14 +4,15 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Index</h2>
-
+<br />
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add Player", "Create",new { },new { @class="btn btn-primary"})
 </p>
 <table class="table">
     <tr>
+        <th>
+            
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
         </th>
@@ -27,14 +28,15 @@
         <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image)
-        </th>
+
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            <img src="~/Content/Images/@item.Image" alt="@item.FirstName @item.LastName" style="height:50px;" class="img-thumbnail"/>
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.FirstName)
         </td>
@@ -50,13 +52,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.Email)
         </td>
+
         <td>
-            @Html.DisplayFor(modelItem => item.Image)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PlayerId }, new { @class="btn btn-success"})
-            @Html.ActionLink("Details", "Details", new { id=item.PlayerId }, new { @class = "btn btn-primary" })
-            @Html.ActionLink("Delete", "Delete", new { id=item.PlayerId }, new { @class = "btn btn-danger" })
+            @Html.ActionLink("Edit", "Edit", new { id = item.PlayerId }, new { @class = "btn btn-success" })
+            @Html.ActionLink("Details", "Details", new { id = item.PlayerId }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Delete", "Delete", new { id = item.PlayerId }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }

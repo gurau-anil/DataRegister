@@ -3,6 +3,7 @@ using DataRegister.Base.Models;
 using DataRegister.SQL;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -31,10 +32,17 @@ namespace DataRegister.WebUI.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(Player player)
+        public ActionResult Create(Player player,HttpPostedFileBase file)
         {
             if(ModelState.IsValid)
             {
+                if (file!=null)
+                {
+                    //Saving Image file to the device
+                    player.Image = player.PlayerId + Path.GetExtension(file.FileName);
+                    file.SaveAs(Server.MapPath("//Content//Images//") + player.Image);
+                    
+                }
                 repository.Insert(player);
                 repository.Commit();
                 return RedirectToAction("Index");
@@ -67,7 +75,7 @@ namespace DataRegister.WebUI.Controllers
             }
         }
         [HttpPost]
-        public ActionResult Edit(Player player) //public ActionResult Edit(Player item,string Id)
+        public ActionResult Edit(Player player, HttpPostedFileBase file) //public ActionResult Edit(Player item,string Id)
         {
             //Player playerToEdit = repository.Find(Id);
             //if (playerToEdit == null)
@@ -92,6 +100,11 @@ namespace DataRegister.WebUI.Controllers
             //}
             if(ModelState.IsValid)
             {
+                if (file!=null)
+                {
+                    player.Image = player.PlayerId + Path.GetExtension(file.FileName);
+                    file.SaveAs(Server.MapPath("//Content//Images//") + player.Image);
+                }
                 repository.Update(player);
                 repository.Commit();
                 return RedirectToAction("Index");
